@@ -20,7 +20,8 @@ public class MoveFlowMouse : MonoBehaviour {
 		CameraOffset *= .00025f * flowScale;
 		CameraOffset.z = 0f;
 
-		transform.DOLocalMove(CameraOffset + OriginalPosition, .25f / flowSpeed);
+		transform.DOKill();
+		transform.DOLocalMove(CameraOffset + OriginalPosition, .25f / flowSpeed).SetEase(Ease.OutExpo);
 
 	}
 

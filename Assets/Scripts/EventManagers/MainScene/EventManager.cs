@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour {
 
@@ -21,9 +22,11 @@ public class ButtonManager : MonoBehaviour {
 		canvasMoveToMainScript.TargetCanvas = mainCanvas;
 
 	}
+	
+	//=================================================================================| Main Screen Menu Buttons
 
 	public void OnStartButtonPressed() {
-		
+		SceneManager.LoadScene("FourierTransformation");
 	}
 
 	public void OnSettingButtonPressed() {
@@ -34,9 +37,14 @@ public class ButtonManager : MonoBehaviour {
 		Application.Quit();
 	}
     
+	//=================================================================================| Hyper Links
+
 	public void OnGithubButtonPressed() {
 		Application.OpenURL("https://github.com/Neeko-onTheRoad");
 	}
+
+	
+	//=================================================================================| ETC
 
 	public void OnGotoMainButtonPressed() {
 		canvasMoveToMainScript.OnButtonClick();
