@@ -3,29 +3,29 @@ using UnityEngine;
 
 class OnClickCanvasMove : MonoBehaviour {
 
-	[SerializeField] private Transform targetObject;
-	[SerializeField] private Canvas    targetCanvas;
+	public Transform TargetObject;
+	public Canvas    TargetCanvas;
 
-	[SerializeField] private float distance       = 10f;
-	[SerializeField] private float transformSpeed = 1f;
+	public float Distance       = 10f;
+	public float TransformSpeed = 1f;
 
 	public void OnButtonClick() {
 		
-		RectTransform targetTransform = targetCanvas.GetComponent<RectTransform>();
+		RectTransform targetTransform = TargetCanvas.GetComponent<RectTransform>();
 
 		Vector3 targetPosition   = targetTransform.position;
 		Vector3 targetEularAngle = targetTransform.eulerAngles;
 
 		Quaternion rotation  = Quaternion.Euler(targetEularAngle);
 		Vector3    forward   = rotation * Vector3.forward;
-		Vector3    resultPos = targetPosition - forward * distance;
+		Vector3    resultPos = targetPosition - forward * Distance;
 		
 		Vector3    direction = targetPosition - resultPos;
 		Quaternion lookPoint = Quaternion.LookRotation(direction);
 
 
-		targetObject.transform.DOMove(resultPos, .5f / transformSpeed).SetEase(Ease.InOutExpo);
-		targetObject.transform.DORotate(lookPoint.eulerAngles, .5f / transformSpeed).SetEase(Ease.InOutExpo);
+		TargetObject.transform.DOMove(resultPos, .5f / TransformSpeed).SetEase(Ease.InOutExpo);
+		TargetObject.transform.DORotate(lookPoint.eulerAngles, .5f / TransformSpeed).SetEase(Ease.InOutExpo);
 
 	}
 
