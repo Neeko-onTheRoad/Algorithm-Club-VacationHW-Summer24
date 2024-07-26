@@ -1,12 +1,14 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour {
 
-	[SerializeField] private Transform         mainCamera;
-	[SerializeField] private Canvas            settingCanvas;
-	[SerializeField] private Canvas            mainCanvas;
+	[SerializeField] private Transform mainCamera;
+	[SerializeField] private Canvas    settingCanvas;
+	[SerializeField] private Canvas    mainCanvas;
 
 	private OnClickCanvasMove canvasMoveToSettingScript;
 	private OnClickCanvasMove canvasMoveToMainScript;
@@ -43,11 +45,29 @@ public class ButtonManager : MonoBehaviour {
 		Application.OpenURL("https://github.com/Neeko-onTheRoad");
 	}
 
-	
 	//=================================================================================| ETC
 
 	public void OnGotoMainButtonPressed() {
 		canvasMoveToMainScript.OnButtonClick();
 	}
 
+}
+
+public class ScrollManager : MonoBehaviour {
+
+	[SerializeField] private PostProcessVolume volume;
+
+	//=================================================================================| Setting Scroll Bar
+
+	public void OnSettingBloomLevelScroll() {
+		volume.profile.GetSetting<Bloom>().intensity.value = GetComponent<Scrollbar>().value * 10f;
+	}
+	
+	public void OnSFXVoliumScroll() {
+		
+	}
+
+	public void OnMusicVoliumScroll() {
+		
+	}
 }
